@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 using System.Net;
 using System.Net.Sockets;
 using System.Windows.Forms;
@@ -48,10 +49,7 @@ namespace TestMaximumMTConnections
                     }
                     else
                     {
-//                        _gui.textBoxBroker.Text = "178.255.202.119";
-//                        _gui.textBoxAccountNo.Text = "50131257";
-//                        _gui.textBoxPassword.Text = "ljaxqw2r";
-                        _gui.textBoxBroker.Text = "88.212.234.128:1952";
+                        _gui.textBoxBroker.Text = "88.212.234.128:1952";//MetaQuotes MT5 demo servers
                         _gui.textBoxAccountNo.Text = "6857379";//6857498
                         _gui.textBoxPassword.Text = "p5gyafxp";//2vjvwxwp
                     }
@@ -112,16 +110,19 @@ namespace TestMaximumMTConnections
                                 _gui.textBoxTSInfo.Text = tsBoxid > 0
                                     ? $"Connected to Personal TS @ {TsHost}:{TsPort}, number of terminals is limited by 32"
                                     : $"Connected to Professional/Premium TS @ {TsHost}:{TsPort}";
+                                _gui.textBoxTSInfo.BackColor = Color.LightGreen;
                             }
                             catch (Exception e)
                             {
                                 isTsAvailable = false;
                                 _gui.textBoxTSInfo.Text = "Error connecting to TS: " + e.Message;
+                                _gui.textBoxTSInfo.BackColor = Color.Yellow;
                             }
                         }
                         else
                         {
                             _gui.textBoxTSInfo.Text = "Waiting for Terminal Server parameters entry...";
+                            _gui.textBoxTSInfo.BackColor = Color.GhostWhite;
                         }
                         //
                         int numTerms;
